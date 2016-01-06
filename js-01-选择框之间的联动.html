@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+  <select id="country" onchange="add1(this.value);">
+	<option value="0">--请选择--</option>
+	<option value="中国">中国</option>
+	<option value="美国">美国</option>
+  </select>
+  <select id="s1"></select>
+ </body>
+ <script type="text/javascript">
+	var arr = new Array(2);
+	arr[0] = ["中国","北京","南京"];
+	arr[1] = ["美国","华盛顿","洛杉矶"];
+
+
+
+	function add1(val) {
+		//这段代码放置在这里的意义：当你做出选择时，才需要对上一次所选择而造成的残余进行清除，因此将这段代码放在外面没有任何意义
+		var s1 = document.getElementById("s1");
+		var op = s1.getElementsByTagName("option");
+		for(var m=0;m<op.length;m++) {
+			s1.removeChild(op[m]);
+			m--;
+		}
+
+		for(var i=0;i<arr.length;i++){
+			if(arr[i][0]==val){
+				for(var j=1;j<arr[i].length;j++) {
+					var option = document.createElement("option");
+					var text = document.createTextNode(arr[i][j]);
+					option.appendChild(text);
+					s1.appendChild(option);
+				}
+			}
+		}
+	}
+ </script>
+</html>
